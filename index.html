@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>경상국립대학교 수학물리학부 1학년 물리학1 교과목 보조자료</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&family=Public+Sans:wght@400;600&family=Noto+Serif+KR:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #eef1f4;
+    --ink: #18233a;
+    --muted: #55607a;
+    --rule: #c9d0db;
+    --neg: #2f5bd3;
+    --pos: #d6453d;
+    --edge: #8f9ab0;
+    --hi: #e0a800;
+    --ind: #2e9d55;
+    --copper: #c9773f;
+    --accent: #b5770f;
+    --serif: "STIX Two Text", "Noto Serif KR", "Cambria", "Times New Roman", serif;
+    --sans: "Public Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #141c2b;
+      --ink: #e4e9f2;
+      --muted: #9aa5bb;
+      --rule: #2e3a52;
+      --neg: #6f93f2;
+      --pos: #ff6b5e;
+      --edge: #5a6884;
+      --hi: #f5d24e;
+      --ind: #7ddc8a;
+      --copper: #e39461;
+      --accent: #e3a43a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #141c2b;
+    --ink: #e4e9f2;
+    --muted: #9aa5bb;
+    --rule: #2e3a52;
+    --neg: #6f93f2;
+    --pos: #ff6b5e;
+    --edge: #5a6884;
+      --hi: #f5d24e;
+      --ind: #7ddc8a;
+      --copper: #e39461;
+    --accent: #e3a43a;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
+  .ko { color: var(--muted); word-break: keep-all; }
+
+  /* Hero */
+  .hero { padding: 4.5rem 0 3rem; }
+  .hero-text { max-width: 48rem; }
+  .hero h1 {
+    font-weight: 600;
+    font-size: clamp(2.1rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    word-break: keep-all;
+    margin: 0 0 1.25rem;
+  }
+  .hero-text p { margin: 0; max-width: 40rem; color: var(--muted); font-size: 1.2rem; }
+  .hero-text .credit { margin-top: 1.25rem; font-family: var(--sans); font-size: 0.95rem; }
+  .credit span { display: block; }
+  .field-figure { margin: 3rem 0 0; }
+  .panels {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+  .ind { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2.5rem; align-items: center; }
+  #scene { display: block; width: 100%; aspect-ratio: 16 / 9; }
+  #rplot { display: block; width: 100%; aspect-ratio: 16 / 10; }
+  .plot { display: block; width: 100%; aspect-ratio: 3 / 1; }
+  .plot-title { font-weight: 600; font-size: 1rem; margin-top: 1rem; }
+  .plot-title:first-child { margin-top: 0; }
+  .plot-title .ko, .plot-foot .ko { font-weight: 400; font-size: 0.85em; margin-left: 0.3em; }
+  .plot-foot { text-align: right; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 0.2rem; }
+  .c-ind { color: var(--ind); }
+  .ind-caption { margin: 1.5rem 0 0; font-size: 1rem; line-height: 1.55; max-width: 52rem; }
+  .ind-caption .ko { display: block; margin-top: 0.4rem; font-size: 0.92rem; }
+  .panel p { margin: 0.75rem 0 0; font-size: 1rem; line-height: 1.55; }
+  .panel p .ko { display: block; margin-top: 0.4rem; font-size: 0.92rem; }
+  .c-neg { color: var(--neg); }
+  .c-pos { color: var(--pos); }
+  .c-hi { color: var(--hi); font-weight: 600; }
+  .controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+    max-width: 44rem;
+    flex-wrap: wrap;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+  }
+  .controls label { display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 12rem; }
+  .controls label > span { font-family: var(--serif); font-size: 1.1rem; }
+  .controls input[type="range"] { flex: 1; accent-color: var(--neg); min-width: 0; }
+  .controls output { font-variant-numeric: tabular-nums; min-width: 1.8rem; }
+  .controls button {
+    font: inherit;
+    color: var(--ink);
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.25rem 0.7rem;
+    cursor: pointer;
+  }
+  .controls button:hover { border-color: var(--ink); }
+  .seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; }
+  .controls .seg button { border: 0; border-radius: 0; padding: 0.25rem 0.7rem; }
+  .controls .seg button + button { border-left: 1px solid var(--rule); }
+  .controls .seg button[aria-pressed="true"] { background: var(--neg); color: var(--paper); font-weight: 600; }
+  .field-figure figcaption {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-top: 0.6rem;
+  }
+
+  /* Demo list */
+  .part { padding: 2.25rem 0 1rem; border-top: 1px solid var(--rule); }
+  .part h2 {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 1.5rem;
+    margin: 0 0 0.5rem;
+    color: var(--muted);
+  }
+  .demos { list-style: none; margin: 0; padding: 0; }
+  .demo {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr minmax(14rem, 24rem);
+    gap: 0 1.5rem;
+    padding: 1.4rem 0;
+    align-items: baseline;
+  }
+  .demo + .demo { border-top: 1px dashed var(--rule); }
+  .num { font-size: 1.5rem; color: var(--accent); font-variant-numeric: oldstyle-nums; }
+  .demo h3 { font-size: 1.55rem; font-weight: 600; line-height: 1.2; margin: 0 0 0.35rem; }
+  .demo h3 a { text-decoration: none; }
+  .demo h3 a:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  h3 .ko { display: block; font-size: 1.05rem; font-weight: 400; margin-top: 0.15rem; }
+  .demo p { margin: 0 0 0.6rem; max-width: 36rem; }
+  .links .ko-link { color: var(--muted); font-weight: 600; }
+  .links { font-family: var(--sans); font-size: 0.9rem; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  .links a { text-underline-offset: 3px; }
+  .links a.primary { font-weight: 600; color: var(--neg); }
+  .eq { font-size: 1.15rem; line-height: 1.5; text-align: right; overflow-x: auto; white-space: nowrap; }
+  .eq sup, .eq sub { font-size: 0.68em; line-height: 0; }
+  .eq .bf { font-weight: 600; font-style: normal; }
+  .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: 0.95em; }
+  .frac > span:first-child { border-bottom: 1px solid currentColor; padding: 0 0.2em; }
+  .frac > span:last-child { padding: 0 0.2em; }
+  .big { font-size: 1.3em; }
+  .sqrt { display: inline-flex; align-items: stretch; vertical-align: -0.28em; white-space: nowrap; }
+  .radic { width: 0.62em; height: auto; overflow: visible; fill: none; stroke: currentColor; stroke-width: 1.1; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+  .radicand { border-top: 1.1px solid currentColor; padding: 0.1em 0.12em 0 0.06em; line-height: 1.3; }
+
+  .refs ul { margin: 0.5rem 0 1.5rem; padding-left: 1.2rem; max-width: 46rem; }
+  .refs li { margin-bottom: 0.8rem; }
+  .refs a { text-underline-offset: 3px; text-decoration-color: var(--rule); }
+  .refs a:hover { text-decoration-color: currentColor; }
+  .tr { display: block; font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin-top: 0.15rem; }
+  .promo {
+    max-width: 46rem;
+    margin: 0.5rem 0 2rem;
+    padding: 1.25rem 1.5rem;
+    border-left: 3px solid var(--accent);
+    background: color-mix(in srgb, var(--accent) 7%, transparent);
+    word-break: keep-all;
+  }
+  .promo p { margin: 0 0 0.6rem; }
+  .promo-title { font-weight: 600; font-size: 1.2rem; }
+  .promo-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin: 0 !important; font-family: var(--sans); font-size: 0.95rem; }
+  .promo-links a { font-weight: 600; color: var(--neg); text-decoration: none; }
+  .promo-links a::after { content: " →"; }
+  .promo-links a:hover { text-decoration: underline; }
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2rem 0 3rem;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 52rem) {
+    .hero { padding-top: 3rem; }
+    .panels { grid-template-columns: 1fr; }
+    .ind { grid-template-columns: 1fr; gap: 1.5rem; }
+    .demo { grid-template-columns: 2rem 1fr; }
+    .eq { grid-column: 2; text-align: left; margin-top: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="hero-text">
+      <h1 lang="ko">경상국립대학교 수학물리학부<br>1학년 물리학1 교과목 보조자료</h1>
+      <p>Eight browser simulations that accompany Physics 1, a first-year course, from describing motion and Newton's laws to oscillations, waves and the laws of thermodynamics. Every demo comes in both English and Korean.</p>
+      <p class="ko" lang="ko" style="margin-top:0.6rem">1학년 과목인 물리학1의 강의와 함께, 운동의 기술과 뉴턴의 운동법칙에서 진동과 파동, 열역학 법칙까지 살펴보는 여덟 가지 브라우저 시뮬레이션입니다. 모든 데모는 영어판과 한국어판이 함께 있습니다.</p>
+      <p class="credit">Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.<span lang="ko">이상훈 교수의 강의노트를 바탕으로 Claude Opus 5.5가 만들었습니다.</span></p>
+    </div>
+    <figure class="field-figure">
+      <div class="ind">
+        <canvas id="scene" aria-label="A rocket in space burning fuel and speeding up"></canvas>
+        <div class="ind-plots">
+          <div class="plot-title">Speed gained Δ<i>v</i> / <i>v</i><sub>rel</sub> <span class="ko" lang="ko">얻은 속력</span></div>
+          <canvas id="rplot" aria-label="Speed gained versus the mass ratio, following the natural logarithm"></canvas>
+          <div class="plot-foot">mass ratio <i>M</i><sub>i</sub> / <i>M</i> <span class="ko" lang="ko">질량비</span></div>
+        </div>
+      </div>
+      <p class="ind-caption">A rocket in empty space has nothing to push against, so it speeds up by throwing fuel out the back while the total momentum stays the same. With exhaust speed <i>v</i><sub>rel</sub> relative to the rocket, the thrust is <i>T</i> = <i>Rv</i><sub>rel</sub> for a burn rate <i>R</i>, and the speed gained depends only on how much the mass has dropped: Δ<i>v</i> = <i>v</i><sub>rel</sub> ln(<i>M</i><sub>i</sub>/<i>M</i>). Here 80% of the initial mass is fuel, so the rocket ends up at <i>v</i><sub>rel</sub> ln 5 ≈ 1.6 <i>v</i><sub>rel</sub>.<span class="ko" lang="ko">텅 빈 우주의 로켓은 밀어낼 것이 없으므로, 전체 운동량을 그대로 유지한 채 연료를 뒤로 내뿜어 빨라집니다. 로켓에 대한 배기 속력이 <i>v</i><sub>rel</sub>이고 연료 소모율이 <i>R</i>이면 추력은 <i>T</i> = <i>Rv</i><sub>rel</sub>이고, 얻는 속력은 질량이 얼마나 줄었는지에만 달려 있습니다: Δ<i>v</i> = <i>v</i><sub>rel</sub> ln(<i>M</i><sub>i</sub>/<i>M</i>). 여기서는 처음 질량의 80%가 연료이므로 로켓의 최종 속력은 <i>v</i><sub>rel</sub> ln 5 ≈ 1.6 <i>v</i><sub>rel</sub>입니다.</span></p>
+      <figcaption>From demo 4, <a href="https://lshlj82.github.io/linear-momentum/momentum-en.html">Linear momentum</a>. <span lang="ko">데모 4 「<a href="https://lshlj82.github.io/linear-momentum/momentum-ko.html">선운동량</a>」에서.</span></figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="part" aria-labelledby="part-motion">
+      <h2 id="part-motion">Motion and forces <span class="ko" lang="ko">운동과 힘</span></h2>
+      <ol class="demos" start="1">
+        <li class="demo">
+          <span class="num">1</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/motion-description/motion-en.html">Describing motion</a><span class="ko" lang="ko">운동의 기술</span></h3>
+            <p>Position, velocity and acceleration in one and two dimensions, including projectile and circular motion.</p>
+            <p class="ko" lang="ko">1차원과 2차원에서의 위치, 속도, 가속도, 그리고 포물체 운동과 원운동.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/motion-description/motion-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/motion-description/motion-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/motion-description">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="x equals x zero plus v zero t plus one half a t squared">
+            <i>x</i> = <i>x</i><sub>0</sub> + <i>v</i><sub>0</sub><i>t</i> + <span class="frac"><span>1</span><span>2</span></span><i>at</i><sup>2</sup>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">2</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/Newton-laws-of-motion/newton-en.html">Newton's laws of motion</a><span class="ko" lang="ko">뉴턴의 운동법칙</span></h3>
+            <p>Forces, free-body diagrams and the three laws of motion, applied to friction, tension and inclines.</p>
+            <p class="ko" lang="ko">힘, 자유 물체 도형, 세 가지 운동법칙, 그리고 마찰, 장력, 빗면 문제에의 적용.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/Newton-laws-of-motion/newton-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/Newton-laws-of-motion/newton-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/Newton-laws-of-motion">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="sum of F equals m a">
+            ∑ <span class="bf">F</span> = <i>m</i><span class="bf">a</span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part" aria-labelledby="part-energy">
+      <h2 id="part-energy">Energy and momentum <span class="ko" lang="ko">에너지와 운동량</span></h2>
+      <ol class="demos" start="3">
+        <li class="demo">
+          <span class="num">3</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/work-energy/energy-en.html">Work and energy</a><span class="ko" lang="ko">일과 에너지</span></h3>
+            <p>Work, kinetic and potential energy, the work–energy theorem, and conservation of mechanical energy.</p>
+            <p class="ko" lang="ko">일, 운동 에너지와 퍼텐셜 에너지, 일–에너지 정리, 그리고 역학적 에너지 보존.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/work-energy/energy-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/work-energy/energy-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/work-energy">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="W net equals delta K, K equals one half m v squared">
+            <i>W</i><sub>net</sub> = Δ<i>K</i>, &nbsp;<i>K</i> = <span class="frac"><span>1</span><span>2</span></span><i>mv</i><sup>2</sup>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">4</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/linear-momentum/momentum-en.html">Linear momentum</a><span class="ko" lang="ko">선운동량</span></h3>
+            <p>The center of mass, momentum and impulse, conservation of momentum, collisions, and rockets.</p>
+            <p class="ko" lang="ko">질량 중심, 운동량과 충격량, 운동량 보존, 충돌, 그리고 로켓.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/linear-momentum/momentum-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/linear-momentum/momentum-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/linear-momentum">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="F net equals d p d t">
+            <span class="bf">F</span><sub>net</sub> = <span class="frac"><span>d<span class="bf">p</span></span><span>d<i>t</i></span></span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part" aria-labelledby="part-rot">
+      <h2 id="part-rot">Rotation, oscillations and waves <span class="ko" lang="ko">회전, 진동, 파동</span></h2>
+      <ol class="demos" start="5">
+        <li class="demo">
+          <span class="num">5</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/rotational-motion/rotation-en.html">Rotational motion</a><span class="ko" lang="ko">회전운동</span></h3>
+            <p>Angular quantities, torque, moment of inertia, rolling, and angular momentum.</p>
+            <p class="ko" lang="ko">각운동 물리량, 돌림힘, 관성 모멘트, 굴림 운동, 그리고 각운동량.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/rotational-motion/rotation-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/rotational-motion/rotation-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/rotational-motion">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="tau net equals I alpha">
+            <i>τ</i><sub>net</sub> = <i>Iα</i>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">6</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/oscillation-wave/oscillation-wave-en.html">Oscillation and wave</a><span class="ko" lang="ko">진동과 파동</span></h3>
+            <p>Simple harmonic motion, damped and driven oscillations, and traveling and standing waves.</p>
+            <p class="ko" lang="ko">단순 조화 운동, 감쇠 진동과 강제 진동, 그리고 진행파와 정상파.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/oscillation-wave/oscillation-wave-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/oscillation-wave/oscillation-wave-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/oscillation-wave">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="x equals A cos omega t plus phi, omega equals square root of k over m">
+            <i>x</i> = <i>A</i> cos(<i>ωt</i> + <i>ϕ</i>), &nbsp;<i>ω</i> = <span class="sqrt"><svg class="radic" viewBox="0 0 10 24" preserveAspectRatio="none" aria-hidden="true"><path d="M0.5 14 L2.6 12.6 L5.2 23 L9.6 0.6 L10 0.6"/></svg><span class="radicand"><i>k</i>/<i>m</i></span></span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part" aria-labelledby="part-thermo">
+      <h2 id="part-thermo">Thermodynamics <span class="ko" lang="ko">열역학</span></h2>
+      <ol class="demos" start="7">
+        <li class="demo">
+          <span class="num">7</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/thermodynamics-1st/thermo1-en.html">Thermodynamics: the 1st law</a><span class="ko" lang="ko">열역학: 제 1법칙</span></h3>
+            <p>Temperature, heat and internal energy, the work done by a gas, and the first law of thermodynamics.</p>
+            <p class="ko" lang="ko">온도, 열과 내부 에너지, 기체가 하는 일, 그리고 열역학 제1법칙.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/thermodynamics-1st/thermo1-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/thermodynamics-1st/thermo1-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/thermodynamics-1st">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="delta E internal equals Q minus W">
+            Δ<i>E</i><sub>int</sub> = <i>Q</i> − <i>W</i>
+          </div>
+        </li>
+        <li class="demo">
+          <span class="num">8</span>
+          <div>
+            <h3><a href="https://lshlj82.github.io/thermodynamics-2nd/thermo2-en.html">Thermodynamics: the 2nd law</a><span class="ko" lang="ko">열역학: 제 2법칙</span></h3>
+            <p>Entropy, heat engines and refrigerators, the Carnot cycle, and the second law of thermodynamics.</p>
+            <p class="ko" lang="ko">엔트로피, 열기관과 냉동기, 카르노 순환, 그리고 열역학 제2법칙.</p>
+            <div class="links">
+              <a class="primary" href="https://lshlj82.github.io/thermodynamics-2nd/thermo2-en.html">Open demo</a>
+              <a class="primary ko-link" lang="ko" href="https://lshlj82.github.io/thermodynamics-2nd/thermo2-ko.html">한국어 데모</a>
+              <a href="https://github.com/lshlj82/thermodynamics-2nd">Source on GitHub</a>
+            </div>
+          </div>
+          <div class="eq" aria-label="delta S at least zero, Carnot efficiency equals one minus T L over T H">
+            Δ<i>S</i> ≥ 0, &nbsp;<i>ε</i><sub>C</sub> = 1 − <span class="frac"><span><i>T</i><sub>L</sub></span><span><i>T</i><sub>H</sub></span></span>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="part refs" aria-labelledby="part-refs">
+      <h2 id="part-refs">References <span class="ko" lang="ko">참고문헌</span></h2>
+      <ul>
+        <li>Prof. Sang Hoon Lee, lecture notes for Physics 1. <span class="ko" lang="ko">이상훈 교수, 물리학1 강의노트.</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee. All demos run in the browser with no installation, and the source code for each one is on <a href="https://github.com/lshlj82">GitHub</a>.<br><span lang="ko">이상훈 교수의 강의노트를 바탕으로 Claude Opus 5.5가 만들었습니다. 모든 데모는 설치 없이 브라우저에서 실행되며, 각 데모의 소스 코드는 GitHub에서 볼 수 있습니다.</span>
+  </footer>
+</div>
+<script>
+(function () {
+  // Parameters from demo 4's rocket section
+  const Mi = 50000, FUEL = 0.8, Mf = Mi * (1 - FUEL), VREL = 3000, R = 500;
+  const TB = (Mi - Mf) / R;                 // burn time, 80 s
+  const PLAY = 6, COAST = 2.5;              // seconds on screen
+  let tau = 0, starOff = 0;                 // tau: real seconds since launch
+
+  let C = {};
+  function readColors() {
+    const cs = getComputedStyle(document.documentElement);
+    ['ink', 'muted', 'rule', 'paper', 'pos', 'neg', 'ind', 'copper', 'edge'].forEach(k => C[k] = cs.getPropertyValue('--' + k).trim());
+    C.sans = cs.getPropertyValue('--sans').trim(); C.serif = cs.getPropertyValue('--serif').trim();
+  }
+  const cvs = ['scene', 'rplot'].map(id => { const c = document.getElementById(id); return { c, ctx: c.getContext('2d'), w: 0, h: 0 }; });
+  function resize() {
+    const dpr = window.devicePixelRatio || 1;
+    cvs.forEach(o => { o.w = o.c.clientWidth; o.h = o.c.clientHeight; o.c.width = Math.round(o.w * dpr); o.c.height = Math.round(o.h * dpr); o.ctx.setTransform(dpr, 0, 0, dpr, 0, 0); });
+    draw();
+  }
+
+  function state() {
+    const t = Math.min(tau / PLAY, 1) * TB, M = Mi - R * t;
+    return { t, M, dv: VREL * Math.log(Mi / M), burning: tau < PLAY };
+  }
+  const stars = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), z: 0.3 + Math.random() * 0.7 }));
+
+  function arrow(ctx, x1, y1, x2, y2, head) {
+    const a = Math.atan2(y2 - y1, x2 - x1);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - Math.cos(a) * head * 0.6, y2 - Math.sin(a) * head * 0.6); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - Math.cos(a - 0.45) * head, y2 - Math.sin(a - 0.45) * head);
+    ctx.lineTo(x2 - Math.cos(a + 0.45) * head, y2 - Math.sin(a + 0.45) * head); ctx.closePath(); ctx.fill();
+  }
+  function rich(ctx, parts, x, y, size, color, align) {
+    ctx.fillStyle = color; ctx.textBaseline = 'alphabetic';
+    let wsum = 0; for (const [txt, st] of parts) { ctx.font = (st === 'i' ? 'italic ' : '') + (st === 's' ? Math.round(size * 0.72) : size) + 'px ' + C.serif; wsum += ctx.measureText(txt).width + (st === 's' ? 2 : 0); }
+    if (align === 'right') x -= wsum; else if (align === 'center') x -= wsum / 2;
+    ctx.textAlign = 'left';
+    for (const [txt, st] of parts) {
+      ctx.font = (st === 'i' ? 'italic ' : '') + (st === 's' ? Math.round(size * 0.72) : size) + 'px ' + C.serif;
+      ctx.fillText(txt, x, y + (st === 's' ? size * 0.3 : 0));
+      x += ctx.measureText(txt).width + (st === 's' ? 2 : 0);
+    }
+  }
+
+  function drawScene() {
+    const { ctx, w, h } = cvs[0]; ctx.clearRect(0, 0, w, h);
+    const st = state();
+    // stars drift backward faster as the rocket speeds up (parallax by depth)
+    ctx.fillStyle = C.muted;
+    for (const s of stars) {
+      const x = ((s.x * w - starOff * s.z) % w + w) % w;
+      ctx.globalAlpha = 0.35 + 0.5 * s.z;
+      ctx.beginPath(); ctx.arc(x, s.y * h, 0.8 + 1.1 * s.z, 0, 2 * Math.PI); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    const unit = Math.min(w / 440, h / 200), cy = h * 0.5;
+    const L = 150 * unit * (0.4 + 0.6 * st.M / Mi), H = 34 * unit, nose = 32 * unit;
+    const x0 = w * 0.45 - (L + nose) / 2 + 30 * unit;
+    // exhaust
+    if (st.burning) {
+      for (let k = 0; k < 7; k++) {
+        const len = (38 + Math.random() * 42) * unit, y = cy - H * 0.36 + k * H * 0.12;
+        ctx.strokeStyle = k % 2 ? C.pos : C.copper; ctx.globalAlpha = 0.85; ctx.lineWidth = 3.4 * unit;
+        ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x0 - len, y); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
+    // body, fuel, nose
+    ctx.fillStyle = C.paper; ctx.strokeStyle = C.ink; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.moveTo(x0, cy - H / 2); ctx.lineTo(x0 + L, cy - H / 2); ctx.lineTo(x0 + L + nose, cy); ctx.lineTo(x0 + L, cy + H / 2); ctx.lineTo(x0, cy + H / 2); ctx.closePath(); ctx.fill();
+    const fuelFrac = (st.M - Mf) / (Mi - Mf);
+    ctx.fillStyle = C.copper; ctx.globalAlpha = 0.55;
+    ctx.fillRect(x0 + 3, cy - H / 2 + 3, (L - 6) * 0.9 * fuelFrac, H - 6); ctx.globalAlpha = 1;
+    ctx.stroke();
+    // fins
+    ctx.fillStyle = C.ink;
+    ctx.beginPath(); ctx.moveTo(x0, cy - H / 2); ctx.lineTo(x0 - 12 * unit, cy - H / 2 - 14 * unit); ctx.lineTo(x0 + 22 * unit, cy - H / 2); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(x0, cy + H / 2); ctx.lineTo(x0 - 12 * unit, cy + H / 2 + 14 * unit); ctx.lineTo(x0 + 22 * unit, cy + H / 2); ctx.closePath(); ctx.fill();
+
+    // arrows: thrust T forward, exhaust v_rel backward
+    const sz = Math.max(13, 15 * unit);
+    if (st.burning) {
+      ctx.strokeStyle = C.ind; ctx.fillStyle = C.ind; ctx.lineWidth = 3;
+      const ax = x0 + L + nose + 10 * unit; arrow(ctx, ax, cy, ax + 46 * unit, cy, 12);
+      rich(ctx, [['T', 'i']], ax + 23 * unit, cy - 10, sz, C.ind, 'center');
+      ctx.strokeStyle = C.pos; ctx.fillStyle = C.pos; ctx.lineWidth = 2.5;
+      const by = cy - H / 2 - 30 * unit; arrow(ctx, x0 - 20 * unit, by, x0 - 75 * unit, by, 11);
+      rich(ctx, [['v', 'i'], ['rel', 's']], x0 - 48 * unit, by - 9, sz, C.pos, 'center');
+    }
+    // readout
+    const kt = v => (v / 1000).toFixed(1);
+    rich(ctx, [['M', 'i'], [' = ' + kt(st.M) + ' t', 'n']], 10, h - 34, 14, C.muted);
+    rich(ctx, [['v', 'i'], [' = ' + kt(st.dv) + ' km/s', 'n']], 10, h - 14, 14, C.muted);
+    rich(ctx, [[st.burning ? 'burning fuel' : 'coasting', 'n']], w - 10, h - 14, 14, C.muted, 'right');
+  }
+
+  function drawPlot() {
+    const { ctx, w, h } = cvs[1]; ctx.clearRect(0, 0, w, h);
+    const st = state(), rmax = Mi / Mf, ymax = Math.log(rmax) * 1.12;
+    const L = 40, Rm = 12, T = 12, B = h - 26;
+    const X = r => L + (r - 1) / (rmax - 1) * (w - L - Rm), Y = y => B - y / ymax * (B - T);
+    ctx.strokeStyle = C.muted; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, T); ctx.lineTo(L, B); ctx.lineTo(w - Rm, B); ctx.stroke();
+    ctx.fillStyle = C.muted; ctx.font = '12px ' + C.sans; ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    [1, 2, 3, 4, 5].forEach(r => ctx.fillText(String(r), X(r), B + 6));
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    ctx.fillText('0', L - 6, Y(0)); ctx.fillText(Math.log(rmax).toFixed(2), L - 6, Y(Math.log(rmax)));
+    ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(L, Y(Math.log(rmax))); ctx.lineTo(X(rmax), Y(Math.log(rmax))); ctx.stroke(); ctx.setLineDash([]);
+    ctx.strokeStyle = C.neg; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (let k = 0; k <= 200; k++) { const r = 1 + (rmax - 1) * k / 200; k ? ctx.lineTo(X(r), Y(Math.log(r))) : ctx.moveTo(X(r), Y(Math.log(r))); }
+    ctx.stroke();
+    rich(ctx, [['ln(', 'n'], ['M', 'i'], ['i', 's'], ['/', 'n'], ['M', 'i'], [')', 'n']], X(2.3), Y(Math.log(2.3)) - 14, 14, C.neg, 'right');
+    const r = Mi / st.M;
+    ctx.fillStyle = C.pos; ctx.beginPath(); ctx.arc(X(r), Y(Math.log(r)), 6, 0, 2 * Math.PI); ctx.fill();
+  }
+  function draw() { if (!C.ink || !cvs[0].w) return; drawScene(); drawPlot(); }
+
+  readColors();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); draw(); });
+  new ResizeObserver(resize).observe(document.querySelector('.ind'));
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(draw);
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { tau = PLAY * 0.6; return; }
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    tau += dt; if (tau > PLAY + COAST) { tau = 0; }
+    const v = state().dv;
+    starOff += (12 + v * 0.06) * dt;          // background speed follows the rocket's speed
+    draw();
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
