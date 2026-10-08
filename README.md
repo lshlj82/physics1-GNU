@@ -29,7 +29,7 @@ Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 
 The page is a single self-contained `index.html` with no build step. Its header replays the rocket from demo 4: a rocket with an initial mass of 50 t, 80% of it fuel, burns fuel at 500 kg/s with an exhaust speed of 3000 m/s relative to the rocket. As it throws fuel out the back, the stars stream past faster, and a plot follows the speed gained, Δ*v* = *v*<sub>rel</sub> ln(*M*<sub>i</sub>/*M*), up to *v*<sub>rel</sub> ln 5 ≈ 4.8 km/s. The 80-second burn plays in 6 seconds, followed by a short coast, and then repeats.
 
-The page supports light and dark mode and adapts to phone screens. For visitors who have reduced motion turned on, it shows a still frame instead of the animation.
+The page supports light and dark mode (a sun/moon button in the top-right corner switches by hand, and the choice is remembered across pages) and adapts to phone screens. For visitors who have reduced motion turned on, it shows a still frame instead of the animation.
 
 페이지는 빌드 과정 없이 `index.html` 파일 하나로 이루어져 있습니다. 상단에서는 데모 4의 로켓을 다시 보여줍니다. 처음 질량 50 t 가운데 80%가 연료인 로켓이 로켓에 대한 배기 속력 3000 m/s로 연료를 초당 500 kg씩 내뿜습니다. 연료를 뒤로 내뿜을수록 별이 더 빨리 지나가고, 그래프는 얻은 속력 Δ*v* = *v*<sub>rel</sub> ln(*M*<sub>i</sub>/*M*)이 *v*<sub>rel</sub> ln 5 ≈ 4.8 km/s까지 커지는 모습을 보여줍니다. 80초 동안의 연소를 6초로 줄여 보여 주고, 잠시 관성으로 날아간 뒤 다시 반복합니다.
 
