@@ -12,6 +12,8 @@ Landing page for the interactive web demos that accompany *Physics 1* (물리학
 Created by Claude Opus 5.5, based on the lecture notes by Prof. Sang Hoon Lee.
 이상훈 교수의 강의노트를 바탕으로 Claude Opus 5.5가 만들었습니다.
 
+**Next course · 이어지는 과목:** [Physics 2](https://github.com/lshlj82/physics2-GNU) ([live page](https://lshlj82.github.io/physics2-GNU/)), covering electric charge and fields, circuits, magnetism, electromagnetic induction, and Maxwell's equations and light. 물리학2에서는 전하와 전기장, 전기회로, 자기, 전자기 유도, 맥스웰 방정식과 빛을 다룹니다.
+
 ## Demos · 데모 목록
 
 | # | Demo | 데모 | Links |
@@ -45,4 +47,5 @@ Open `index.html` in any modern browser. Fonts load from Google Fonts when onlin
 
 ## References · 참고문헌
 
+- Continued in [Physics 2](https://lshlj82.github.io/physics2-GNU/). (이어지는 과목: 물리학2)
 - Prof. Sang Hoon Lee, lecture notes for Physics 1. (이상훈 교수, 물리학1 강의노트)
